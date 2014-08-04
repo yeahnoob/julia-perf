@@ -12,7 +12,7 @@ def duration(outfile=stdout):
     outfile.write(str(end - start) + '\n')
 
 with duration():
-    filename = argv[1]
+    filename = "word-pairs.txt"
     file = open(filename)
     lines = map(str.strip, file)
     word_pairs = map(lambda s: s.split(','), lines)
