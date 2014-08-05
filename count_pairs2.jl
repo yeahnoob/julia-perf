@@ -1,7 +1,7 @@
-function groupby{T} (fn, seq::Array{T})
+function groupby{T} (fn::Function, seq::Array{T})
     dict = Dict{Any, Array{T}}()
     #set the initial-size of "dict", for better running time performance.
-    sizehint(dict, length(seq) >> 1)
+    sizehint(dict, length(seq) >> 5)
     for item in seq
         key = fn(item)
         if !haskey(dict, key)
