@@ -18,7 +18,9 @@ function processdata(filename::String)
         lines = readlines(file)
         maplines = map(strip, lines)
         word_pairs = map(s->split(s, ','), maplines)
-        result = groupby(a->a[1], word_pairs)
+        @time begin
+            result = groupby(a->a[1], word_pairs)
+        end
         return result
     finally
         close(file)
@@ -26,11 +28,10 @@ function processdata(filename::String)
 end
 
 println("... Process \"dummy.txt\" and \"word-paris.txt\" ", int(ARGS[1]), " Times ...")
+println("... Test groupby() Performance ...")
 
 for i = 1:int(ARGS[1])
-    @time begin
-        processdata("dummy.txt")
-    end
+    processdata("dummy.txt")
     # wait for sevaral seconds, take easy.:) Hardisk I/O
     y = 0
     for i = 1:10^8
@@ -39,9 +40,7 @@ for i = 1:int(ARGS[1])
         ret = i + 1
         y += ret
     end
-    @time begin
-        processdata("word-pairs.txt")
-    end
+    processdata("word-pairs.txt")
 end
 
 None 
