@@ -17,7 +17,11 @@ function processdata(filename::String)
     try
         lines = readlines(file)
         maplines = map(strip, lines)
-        word_pairs = map(s->split(s, ','), maplines)
+        println("... ...map time... ...")
+        @time begin
+            word_pairs = map(s->split(s, ','), maplines)
+        end
+        println("... ...groupby time... ...")
         @time begin
             result = groupby(a->a[1], word_pairs)
         end
@@ -31,7 +35,7 @@ println("... Process \"dummy.txt\" and \"word-paris.txt\" ", int(ARGS[1]), " Tim
 println("... Test groupby() Performance ...")
 
 for i = 1:int(ARGS[1])
-    processdata("dummy.txt")
+    #processdata("dummy.txt")
     # wait for sevaral seconds, take easy.:) Hardisk I/O
     y = 0
     for i = 1:10^8

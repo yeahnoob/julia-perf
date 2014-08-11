@@ -20,7 +20,7 @@ function processdata(filename::String)
         #maplines = map(strip, lines)
         #println(length(maplines))
         word_pairs = String[]
-        word_pairs = map(s->split(strip(s), ','), lines)
+        word_pairs = map(s->split(strip(s), ',', 3), lines)
         #println(length(word_pairs))
         result = groupby(a->a[1], word_pairs)
         return result

@@ -13,7 +13,7 @@ function groupby{T} (fn, seq::Array{T})
 end
 
 function wordreduce(ss::String)
-    t = split(strip(ss), ',', 50)
+    t = split(strip(ss), ',', 3)
     return t
 end
 
@@ -37,14 +37,6 @@ println("... Process \"dummy.txt\" and \"word-paris.txt\" ", int(ARGS[1]), " Tim
 
 for i = 1:int(ARGS[1])
     processdata("dummy.txt")
-    # wait for sevaral seconds, take easy.:) Hardisk I/O
-    y = 0
-    for i = 1:10^8
-        ret = i
-        ret = i + 2
-        ret = i + 1
-        y += ret
-    end
     processdata("word-pairs.txt")
 end
 
