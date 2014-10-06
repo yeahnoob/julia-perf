@@ -20,7 +20,7 @@ function processdata(filename::String)
         #maplines = map(strip, lines)
         #println(length(maplines))
         word_pairs = String[]
-        word_pairs = map(s->split(strip(s), ','), lines)
+        word_pairs = map(s->split(strip(s), ',';limit=2), lines)
         #println(length(word_pairs))
         result = groupby(a->a[1], word_pairs)
         return result
@@ -40,7 +40,7 @@ for i = 1:int(ARGS[1])
         end
     finally
         @time begin
-            processdata("word-pairs.txt")
+            processdata("wordpairs.txt")
         end
     end
 end
