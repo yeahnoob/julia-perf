@@ -20,7 +20,7 @@ function processdata(filename::String)
         #maplines = map(strip, lines)
         #println(length(maplines))
         word_pairs = String[]
-        word_pairs = map(s->split(strip(s), ',', 3), lines)
+        word_pairs = map(s->split(strip(s), ',', 2), lines)
         #println(length(word_pairs))
         result = groupby(a->a[1], word_pairs)
         return result
@@ -32,9 +32,12 @@ end
 println("... Process \"dummy.txt\" and \"word-paris.txt\" ", int(ARGS[1]), " Times ...")
 
 for i = 1:int(ARGS[1])
+    #=
     @time begin
         processdata("dummy.txt")
     end
+    =#
+    
     # wait for sevaral seconds, take easy.:) Hardisk I/O
     y = 0
     for i = 1:10^8

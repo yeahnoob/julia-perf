@@ -13,10 +13,10 @@ def duration(outfile=stdout):
 
 def processdata(filename="word-pairs.txt"):
     file = open(filename, 'r')
-    lines = map(str.strip, file)
+    '''lines = map(str.strip, file)'''
     print("... ...map time... ...")
     with duration():
-        word_pairs = map(lambda s: s.split(','), lines)
+        word_pairs = map(lambda s: (str.strip(s)).split(','), file)
     print("... ...groupby time... ...")
     with duration():
         result = groupby(first, word_pairs)

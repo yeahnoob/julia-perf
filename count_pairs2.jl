@@ -16,10 +16,11 @@ function processdata(filename::String)
     file = open(filename, "r")
     try
         lines = readlines(file)
-        maplines = map(strip, lines)
+        #=maplines = map(strip, lines)
+        =#
         println("... ...map time... ...")
         @time begin
-            word_pairs = map(s->split(s, ','), maplines)
+            word_pairs = map(s->split(strip(s), ','), lines)
         end
         println("... ...groupby time... ...")
         @time begin
